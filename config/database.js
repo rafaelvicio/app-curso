@@ -3,15 +3,15 @@ var mongoose = require('mongoose');
 module.exports = function(url){
   mongoose.connect(url);
 
-  mongoose.connect.on('connected', function(){
-    console.log('Mongoose conectado em ' + url);
-  });
+  mongoose.connection.on('connected', function(){
+   console.log('Conectado ao MongoDB');
+ });
 
-  mongoose.connect.on('disconnected', function(){
+  mongoose.connection.on('disconnected', function(){
     console.log('Mongoose desconectado');
   });
 
-  mongoose.connect.on('error', function(err){
+  mongoose.connection.on('error', function(err){
     console.log('Mongoose Error ' + err);
   });
 

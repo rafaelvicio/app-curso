@@ -9,6 +9,9 @@ module.exports = function(){
   app.use(express.static('./public'));
   app.use(bodyparser.json());
 
+  app.set('view engine', 'ejs');
+  app.set('views', './app/views');
+
   load('models', {cwd: 'app'})
     .then('controllers')
     .then('routes')

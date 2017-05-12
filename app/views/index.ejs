@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Curso App</title>
+</head>
+<body>
+  <h1>Nossos Cursos</h1>
+
+  <ul>
+    <% for(var i = 0; i < cursos.length; i++) { %>
+      <li>
+        <%= cursos[i].nome %> - <%= cursos[i].categoria %>
+      </li>
+    <% } %>
+  </ul>
+</body>
+</html>

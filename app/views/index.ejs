@@ -14,5 +14,53 @@
       </li>
     <% } %>
   </ul>
+
+  <form onsubmit="criarCurso(event)">
+    <input type="text" id="nome" placeholder="Nome" autofocus=""/>
+    <input type="text" id="categoria" placeholder="Categoria"/>
+    <input type="submit"value="Criar Curso"/>
+
+  </form>
+
 </body>
+<script>
+function criarCurso(event){
+  event.preventDefault();
+  var nome = document.querySelector('#nome').value;
+  var categoria = document.querySelector('#categoria').value;
+
+  fetch('/', {
+    method: 'post',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Authorization': `JWT ${localStorage['token']}`
+    },
+    body: JSON.stringify({nome, categoria})
+  })
+
+    .then(resp => resp.json())
+    .then(() => {location.reload()})
+    .catch(() => {
+      console.log('Ocorreu um erro!');
+    })
+}
+
+  function login(){
+    fetch('/login', {
+      method: 'post',
+      header: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({name: 'joao', password: '12345'})
+    })
+      .then(resp => resp.json())
+      .then(resp => {
+        if(resp.token){
+          localStorage['token'] = resp.token;
+        }
+      })
+  }
+</script>
 </html>

@@ -1,7 +1,11 @@
+var auth = require('../../config/auth').auth;
+
 module.exports = function(app){
   var controller = app.controllers.home;
 
-  app.get('/api/', controller.index);
-  app.post('/', controller.new);
+  app.get('/', controller.index);
+  app.post('/', auth.authenticate, controller.new);
+
+  app.post('login', controller.login);
 
 };

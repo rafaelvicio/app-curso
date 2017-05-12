@@ -1,6 +1,8 @@
+var login = require('../../config/auth').login;
+
 module.exports = function(app){
 
-  var Cursos = app.models.curso;
+  var Curso = app.models.curso;
 
   var controller = {
     index: function(req, res){
@@ -18,6 +20,19 @@ module.exports = function(app){
           res.json(curso);
         }
       });
+    },
+
+    login: function(req, res){
+      var name = req.body.name;
+      var password = req.body.password;
+
+      login(name, password, function(result){
+        if(result){
+          res.json(result);
+        }else{
+          res.status(401).json({message: 'Erro de autenticacao'});
+        }
+      })
     }
   };
 

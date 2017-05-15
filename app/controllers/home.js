@@ -7,7 +7,7 @@ module.exports = function(app){
   var controller = {
     index: function(req, res){
       Curso.find({}, [], {sort: {nome: 1}}).exec().then((cursos) => {
-        res.render('index', cursos);
+        res.render('index', {cursos});
       });
     },
     new: function(req, res){

@@ -6,6 +6,6 @@ module.exports = function(app){
   app.get('/', controller.index);
   app.post('/', auth.authenticate, controller.new);
 
-  app.post('login', controller.login);
+  app.post('/login', controller.login);
 
 };
